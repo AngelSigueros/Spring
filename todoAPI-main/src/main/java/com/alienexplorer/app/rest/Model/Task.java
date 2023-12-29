@@ -3,7 +3,7 @@ package com.alienexplorer.app.rest.Model;
 import javax.persistence.*;
 
 @Entity
-@Table(schema = "TasksCrud")
+@Table(schema = "empresa")
 public class Task {
 
     @Id
