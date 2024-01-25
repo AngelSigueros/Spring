@@ -31,7 +31,7 @@
         <sonar.jacoco.itReportPath>${project.basedir}/target/jacoco-it.exec</sonar.jacoco.itReportPath>
 
         <swagger.springfox.version>2.9.2</swagger.springfox.version>
-        <lombok.version>1.18.4</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
         <jacoco.mavenplugin.version>0.8.2</jacoco.mavenplugin.version>
         <apache.commons.lang3.version>3.8.1</apache.commons.lang3.version>
         <hibernate.validator.version>6.0.13.Final</hibernate.validator.version>
