@@ -1,4 +1,4 @@
-package com.certidevs;
+package com.certidevs.model;
 
 import java.util.Objects;
 

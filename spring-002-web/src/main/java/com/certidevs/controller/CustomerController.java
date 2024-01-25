@@ -1,5 +1,6 @@
-package com.certidevs;
+package com.certidevs.controller;
 
+import com.certidevs.model.Cliente;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

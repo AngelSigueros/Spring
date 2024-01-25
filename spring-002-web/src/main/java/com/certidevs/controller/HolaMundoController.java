@@ -1,4 +1,4 @@
-package com.certidevs;
+package com.certidevs.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HolaMundoController {
 
-    @GetMapping("/")
+    @GetMapping("/hola")
     public String holaMundo() {
         return "Hola Spring!!!";
     }
 
-    @GetMapping("/productos")
+    @GetMapping("/productos-hola")
     public String productos() {
         return "<table>\n" +
                 "<tr>\n" +
