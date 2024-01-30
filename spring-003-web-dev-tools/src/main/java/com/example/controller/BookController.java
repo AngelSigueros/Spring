@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -47,11 +48,9 @@ public class BookController {
         */
 
         // Usando streams
-        //return ResponseEntity.ok(this.books.stream().filter((book -> book.id().equals(id))).findFirst());
-        // Usando streams
         return this.books.stream()
                 .filter(book -> book.id().equals(id))
-                .findFirst().map(book -> ResponseEntity.ok(book))
+                .findFirst().map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
 
         //return ResponseEntity.ok(this.books.getFirst());
@@ -62,7 +61,7 @@ public class BookController {
     public ResponseEntity<List<Book>> findByAuthorId(@PathVariable Long id) {
         // return this.bookService.findById();
 
-        // Buscando directamente en la lista
+        /* Buscando directamente en la lista
 
         List<Book> filteredBooks = new ArrayList<>();
         for (Book book : this.books) {
@@ -70,14 +69,17 @@ public class BookController {
                 filteredBooks.add(book);
             }
         }
+        */
+
+        // Usando streams
+        List<Book> filteredBooks = this.books.stream()
+                .filter(book -> book.author().id().equals(id))
+                .collect(Collectors.toList()); //.toList();
 
         if (filteredBooks.isEmpty())
             return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(filteredBooks);
-
-
-        //return ResponseEntity.ok(this.books.getFirst());
 
     }
 
@@ -92,4 +94,66 @@ public class BookController {
         return ResponseEntity.ok(book);
     }
 
+    @PutMapping("books/{id}")
+    public ResponseEntity<Book> update(@PathVariable Long id, @RequestBody Book book) {
+
+        if (id==null || book.id() == null)
+            return ResponseEntity.badRequest().build();
+
+        int index = -1;
+
+        /* con forEach
+        for (Book currentBook : this.books) {
+            if (currentBook.id().equals(id))
+                index = this.books.indexOf(currentBook);
+        }
+        */
+
+        // con for
+        for (int i = 0; i < this.books.size(); i++) {
+            if (this.books.get(i).id().equals(id))
+                index = i;
+        }
+
+        if (index < 0)
+            return ResponseEntity.notFound().build();
+
+        this.books.set(index, book);
+
+        return ResponseEntity.ok(book);
+
+        /* con stream
+        Book book1 = this.books.stream().filter(b -> b.id().equals(id)).findFirst().orElse(null);
+        if (book1 == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(book);
+        */
+
+    }
+
+    @DeleteMapping("books/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+
+        int index = -1;
+        for (Book book : this.books) {
+            if (book.id().equals(id))
+                index = this.books.indexOf(book);
+        }
+
+        if (index == -1)
+            return ResponseEntity.notFound().build();
+
+        this.books.remove(index);
+
+        return ResponseEntity.noContent().build(); // HttpStatus 204 eliminado correctamente
+    }
+
+    @DeleteMapping("books")
+    public ResponseEntity<Void> deleteAll() {
+
+        if (!this.books.isEmpty())
+            this.books.clear();
+        return ResponseEntity.noContent().build();
+
+    }
 }
