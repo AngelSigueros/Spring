@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>spring-data-jpa-hibernate-multitenant-examples</artifactId>
+	<version>2.0.0.BUILD-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.springframework.data.examples</groupId>
+		<artifactId>spring-data-examples</artifactId>
+		<version>2.0.0.BUILD-SNAPSHOT</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+
+	<name>Hibernate Multitenant Examples</name>
+	<description>
+		A set of projects demonstrating how Hibernates Multitenant features can be integrated with Spring Boot and Spring Data JPA.
+	</description>
+
+	<modules>
+		<module>partition</module>
+		<module>schema</module>
+		<module>db</module>
+	</modules>
+
+</project>
