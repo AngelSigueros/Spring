@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{product.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{product.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/products/add}" class="btn btn-primary ms-2">[[#{product.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${products.empty}">[[#{product.list.empty}]]</div>
+            <div th:if="${!products.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{product.id.label}]]</th>
+                            <th scope="col">[[#{product.name.label}]]</th>
+                            <th scope="col">[[#{product.startDate.label}]]</th>
+                            <th scope="col">[[#{product.price.label}]]</th>
+                            <th scope="col">[[#{product.brandId.label}]]</th>
+                            <th scope="col">[[#{product.brand.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="product : ${products}">
+                            <td>[[${product.id}]]</td>
+                            <td>[[${product.name}]]</td>
+                            <td>[[${product.startDate}]]</td>
+                            <td>[[${product.price}]]</td>
+                            <td>[[${product.brandId}]]</td>
+                            <td>[[${product.brand}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-sm btn-secondary">[[#{product.list.edit}]]</a>
+                                    <form th:action="@{/products/delete/{id}(id=${product.id})}"
+                                            th:hx-confirm="#{delete.confirm}" method="post" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{product.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

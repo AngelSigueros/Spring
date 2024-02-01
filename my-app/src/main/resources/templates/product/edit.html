@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{product.edit.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{product.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/products}" class="btn btn-secondary">[[#{product.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('product')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='product', field='id', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='product', field='name')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='product', field='startDate', inputClass='js-datepicker')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='product', field='price', type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='product', field='brandId')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='product', field='brand', type='select')}" />
+                <input type="submit" th:value="#{product.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>
