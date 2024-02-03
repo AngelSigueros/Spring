@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{historia.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{historia.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/historias/add}" class="btn btn-primary ms-2">[[#{historia.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${historias.empty}">[[#{historia.list.empty}]]</div>
+            <div th:if="${!historias.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{historia.idStory.label}]]</th>
+                            <th scope="col">[[#{historia.texto.label}]]</th>
+                            <th scope="col">[[#{historia.fecCreacion.label}]]</th>
+                            <th scope="col">[[#{historia.user.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="historia : ${historias}">
+                            <td>[[${historia.idStory}]]</td>
+                            <td>[[${historia.texto}]]</td>
+                            <td>[[${historia.fecCreacion}]]</td>
+                            <td>[[${historia.user}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/historias/edit/{idStory}(idStory=${historia.idStory})}" class="btn btn-sm btn-secondary">[[#{historia.list.edit}]]</a>
+                                    <form th:action="@{/historias/delete/{idStory}(idStory=${historia.idStory})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{historia.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

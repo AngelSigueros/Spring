@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{comentario.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{comentario.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/comentarios/add}" class="btn btn-primary ms-2">[[#{comentario.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${comentarios.empty}">[[#{comentario.list.empty}]]</div>
+            <div th:if="${!comentarios.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{comentario.idComment.label}]]</th>
+                            <th scope="col">[[#{comentario.texto.label}]]</th>
+                            <th scope="col">[[#{comentario.fecCreacion.label}]]</th>
+                            <th scope="col">[[#{comentario.user.label}]]</th>
+                            <th scope="col">[[#{comentario.post.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="comentario : ${comentarios}">
+                            <td>[[${comentario.idComment}]]</td>
+                            <td>[[${comentario.texto}]]</td>
+                            <td>[[${comentario.fecCreacion}]]</td>
+                            <td>[[${comentario.user}]]</td>
+                            <td>[[${comentario.post}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/comentarios/edit/{idComment}(idComment=${comentario.idComment})}" class="btn btn-sm btn-secondary">[[#{comentario.list.edit}]]</a>
+                                    <form th:action="@{/comentarios/delete/{idComment}(idComment=${comentario.idComment})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{comentario.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

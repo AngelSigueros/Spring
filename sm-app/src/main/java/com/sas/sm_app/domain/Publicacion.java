@@ -40,4 +40,7 @@ public class Publicacion {
     @OneToMany(mappedBy = "post")
     private Set<Comentario> postComentarios;
 
+    @OneToMany(mappedBy = "publicacion")
+    private Set<Likes> likes;
+
 }

@@ -9,6 +9,21 @@
         <div layout:fragment="content">
             <h1 class="mb-4">[[#{home.index.headline}]]</h1>
             <p class="mb-5">[(#{home.index.text})]</p>
+            <div class="col-md-4 mb-5">
+                <h4 class="mb-3">[[#{home.index.exploreEntities}]]</h4>
+                <div class="list-group">
+                    <a th:href="@{/publicacions}" class="list-group-item list-group-item-action">[[#{publicacion.list.headline}]]</a>
+                    <a th:href="@{/usuarios}" class="list-group-item list-group-item-action">[[#{usuario.list.headline}]]</a>
+                    <a th:href="@{/comentarios}" class="list-group-item list-group-item-action">[[#{comentario.list.headline}]]</a>
+                    <a th:href="@{/historias}" class="list-group-item list-group-item-action">[[#{historia.list.headline}]]</a>
+                    <a th:href="@{/mensajePrivados}" class="list-group-item list-group-item-action">[[#{mensajePrivado.list.headline}]]</a>
+                    <a th:href="@{/configuracions}" class="list-group-item list-group-item-action">[[#{configuracion.list.headline}]]</a>
+                    <a th:href="@{/seguidoress}" class="list-group-item list-group-item-action">[[#{seguidores.list.headline}]]</a>
+                    <a th:href="@{/solicitudess}" class="list-group-item list-group-item-action">[[#{solicitudes.list.headline}]]</a>
+                    <a th:href="@{/hobbies}" class="list-group-item list-group-item-action">[[#{hobby.list.headline}]]</a>
+                    <a th:href="@{/likess}" class="list-group-item list-group-item-action">[[#{likes.list.headline}]]</a>
+                </div>
+            </div>
         </div>
     </body>
 </html>

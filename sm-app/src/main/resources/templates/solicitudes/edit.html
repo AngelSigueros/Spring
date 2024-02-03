@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{solicitudes.edit.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{solicitudes.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/solicitudess}" class="btn btn-secondary">[[#{solicitudes.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('solicitudes')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='solicitudes', field='idRequest', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='solicitudes', field='fecSolicitud')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='solicitudes', field='estado')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='solicitudes', field='solicitante', type='select')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='solicitudes', field='receptor', type='select')}" />
+                <input type="submit" th:value="#{solicitudes.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

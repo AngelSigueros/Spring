@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{mensajePrivado.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{mensajePrivado.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/mensajePrivados/add}" class="btn btn-primary ms-2">[[#{mensajePrivado.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${mensajePrivadoes.empty}">[[#{mensajePrivado.list.empty}]]</div>
+            <div th:if="${!mensajePrivadoes.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{mensajePrivado.idMensaje.label}]]</th>
+                            <th scope="col">[[#{mensajePrivado.texto.label}]]</th>
+                            <th scope="col">[[#{mensajePrivado.fecEnvio.label}]]</th>
+                            <th scope="col">[[#{mensajePrivado.usuarioEmisor.label}]]</th>
+                            <th scope="col">[[#{mensajePrivado.usuarioReceptor.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="mensajePrivado : ${mensajePrivadoes}">
+                            <td>[[${mensajePrivado.idMensaje}]]</td>
+                            <td>[[${mensajePrivado.texto}]]</td>
+                            <td>[[${mensajePrivado.fecEnvio}]]</td>
+                            <td>[[${mensajePrivado.usuarioEmisor}]]</td>
+                            <td>[[${mensajePrivado.usuarioReceptor}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/mensajePrivados/edit/{idMensaje}(idMensaje=${mensajePrivado.idMensaje})}" class="btn btn-sm btn-secondary">[[#{mensajePrivado.list.edit}]]</a>
+                                    <form th:action="@{/mensajePrivados/delete/{idMensaje}(idMensaje=${mensajePrivado.idMensaje})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{mensajePrivado.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{mensajePrivado.edit.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{mensajePrivado.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/mensajePrivados}" class="btn btn-secondary">[[#{mensajePrivado.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('mensajePrivado')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='mensajePrivado', field='idMensaje', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='mensajePrivado', field='texto')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='mensajePrivado', field='fecEnvio')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='mensajePrivado', field='usuarioEmisor', type='select')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='mensajePrivado', field='usuarioReceptor', type='select')}" />
+                <input type="submit" th:value="#{mensajePrivado.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

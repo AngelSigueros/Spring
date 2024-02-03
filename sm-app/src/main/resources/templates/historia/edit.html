@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{historia.edit.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{historia.edit.headline}]]</h1>
+                <div>
+                    <a th:href="@{/historias}" class="btn btn-secondary">[[#{historia.edit.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('historia')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='historia', field='idStory', disabled=true, type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='historia', field='texto')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='historia', field='fecCreacion')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='historia', field='user', type='select')}" />
+                <input type="submit" th:value="#{historia.edit.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>

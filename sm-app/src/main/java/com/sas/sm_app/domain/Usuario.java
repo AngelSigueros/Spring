@@ -93,4 +93,7 @@ public class Usuario {
     )
     private Set<Hobby> usuarioHobbyHobbies;
 
+    @OneToMany(mappedBy = "usuario")
+    private Set<Likes> likes;
+
 }

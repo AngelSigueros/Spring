@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{seguidores.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{seguidores.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/seguidoress/add}" class="btn btn-primary ms-2">[[#{seguidores.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${seguidoreses.empty}">[[#{seguidores.list.empty}]]</div>
+            <div th:if="${!seguidoreses.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{seguidores.id.label}]]</th>
+                            <th scope="col">[[#{seguidores.fecSeguimiento.label}]]</th>
+                            <th scope="col">[[#{seguidores.seguidor.label}]]</th>
+                            <th scope="col">[[#{seguidores.seguido.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="seguidores : ${seguidoreses}">
+                            <td>[[${seguidores.id}]]</td>
+                            <td>[[${seguidores.fecSeguimiento}]]</td>
+                            <td>[[${seguidores.seguidor}]]</td>
+                            <td>[[${seguidores.seguido}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/seguidoress/edit/{id}(id=${seguidores.id})}" class="btn btn-sm btn-secondary">[[#{seguidores.list.edit}]]</a>
+                                    <form th:action="@{/seguidoress/delete/{id}(id=${seguidores.id})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{seguidores.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

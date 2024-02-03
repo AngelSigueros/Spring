@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{solicitudes.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{solicitudes.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/solicitudess/add}" class="btn btn-primary ms-2">[[#{solicitudes.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${solicitudeses.empty}">[[#{solicitudes.list.empty}]]</div>
+            <div th:if="${!solicitudeses.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{solicitudes.idRequest.label}]]</th>
+                            <th scope="col">[[#{solicitudes.fecSolicitud.label}]]</th>
+                            <th scope="col">[[#{solicitudes.estado.label}]]</th>
+                            <th scope="col">[[#{solicitudes.solicitante.label}]]</th>
+                            <th scope="col">[[#{solicitudes.receptor.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="solicitudes : ${solicitudeses}">
+                            <td>[[${solicitudes.idRequest}]]</td>
+                            <td>[[${solicitudes.fecSolicitud}]]</td>
+                            <td>[[${solicitudes.estado}]]</td>
+                            <td>[[${solicitudes.solicitante}]]</td>
+                            <td>[[${solicitudes.receptor}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/solicitudess/edit/{idRequest}(idRequest=${solicitudes.idRequest})}" class="btn btn-sm btn-secondary">[[#{solicitudes.list.edit}]]</a>
+                                    <form th:action="@{/solicitudess/delete/{idRequest}(idRequest=${solicitudes.idRequest})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{solicitudes.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -6,8 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" rel="stylesheet" />
+        <link th:href="@{/webjars/flatpickr/4.6.13/dist/flatpickr.min.css}" rel="stylesheet" />
         <link th:href="@{/css/app.css}" rel="stylesheet" />
         <script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}" defer></script>
+        <script th:src="@{/webjars/flatpickr/4.6.13/dist/flatpickr.min.js}" defer></script>
         <script th:src="@{/js/app.js}" defer></script>
     </head>
     <body>
@@ -26,6 +28,22 @@
                         <ul class="navbar-nav ms-auto">
                             <li class="navbar-item">
                                 <a th:href="@{/}" class="nav-link">[[#{navigation.home}]]</a>
+                            </li>
+                            <li class="navbar-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarEntitiesLink" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">[[#{navigation.entities}]]</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarEntitiesLink">
+                                    <li><a th:href="@{/publicacions}" class="dropdown-item">[[#{publicacion.list.headline}]]</a></li>
+                                    <li><a th:href="@{/usuarios}" class="dropdown-item">[[#{usuario.list.headline}]]</a></li>
+                                    <li><a th:href="@{/comentarios}" class="dropdown-item">[[#{comentario.list.headline}]]</a></li>
+                                    <li><a th:href="@{/historias}" class="dropdown-item">[[#{historia.list.headline}]]</a></li>
+                                    <li><a th:href="@{/mensajePrivados}" class="dropdown-item">[[#{mensajePrivado.list.headline}]]</a></li>
+                                    <li><a th:href="@{/configuracions}" class="dropdown-item">[[#{configuracion.list.headline}]]</a></li>
+                                    <li><a th:href="@{/seguidoress}" class="dropdown-item">[[#{seguidores.list.headline}]]</a></li>
+                                    <li><a th:href="@{/solicitudess}" class="dropdown-item">[[#{solicitudes.list.headline}]]</a></li>
+                                    <li><a th:href="@{/hobbies}" class="dropdown-item">[[#{hobby.list.headline}]]</a></li>
+                                    <li><a th:href="@{/likess}" class="dropdown-item">[[#{likes.list.headline}]]</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>

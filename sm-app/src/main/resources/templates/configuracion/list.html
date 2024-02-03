@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{configuracion.list.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{configuracion.list.headline}]]</h1>
+                <div>
+                    <a th:href="@{/configuracions/add}" class="btn btn-primary ms-2">[[#{configuracion.list.createNew}]]</a>
+                </div>
+            </div>
+            <div th:if="${configuracions.empty}">[[#{configuracion.list.empty}]]</div>
+            <div th:if="${!configuracions.empty}" class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th scope="col">[[#{configuracion.idConfig.label}]]</th>
+                            <th scope="col">[[#{configuracion.notificaciones.label}]]</th>
+                            <th scope="col">[[#{configuracion.mostrarEdad.label}]]</th>
+                            <th scope="col">[[#{configuracion.user.label}]]</th>
+                            <th><!-- --></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="configuracion : ${configuracions}">
+                            <td>[[${configuracion.idConfig}]]</td>
+                            <td>[[${configuracion.notificaciones}]]</td>
+                            <td>[[${configuracion.mostrarEdad}]]</td>
+                            <td>[[${configuracion.user}]]</td>
+                            <td>
+                                <div class="float-end text-nowrap">
+                                    <a th:href="@{/configuracions/edit/{idConfig}(idConfig=${configuracion.idConfig})}" class="btn btn-sm btn-secondary">[[#{configuracion.list.edit}]]</a>
+                                    <form th:action="@{/configuracions/delete/{idConfig}(idConfig=${configuracion.idConfig})}"
+                                            th:data-confirm-message="#{delete.confirm}" method="post" class="js-submit-confirm d-inline">
+                                        <button type="submit" class="btn btn-sm btn-secondary">[[#{configuracion.list.delete}]]</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
