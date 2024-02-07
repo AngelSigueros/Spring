@@ -1,10 +1,14 @@
 package com.sas;
 
-import com.sas.model.Author;
-import com.sas.repository.AuthorRepository;
+import com.sas.model.*;
+import com.sas.repository.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class Spring006MysqlApplication {
@@ -13,6 +17,8 @@ public class Spring006MysqlApplication {
 
 		ApplicationContext context = SpringApplication.run(Spring006MysqlApplication.class, args);
 		AuthorRepository repo = context.getBean((AuthorRepository.class));
+		CategoryRepository categoryRepo = context.getBean((CategoryRepository.class));
+		FilmRepository filmRepo = context.getBean((FilmRepository.class));
 
 		Author a1 = new Author();
 		a1.setName("John");
@@ -40,12 +46,74 @@ public class Spring006MysqlApplication {
 			System.out.println(repo.findAll().getFirst().getId());
 			System.out.println(repo.findAll().get(2).getName() + " " + repo.findAll().get(2).getEmail());
 
-			repo.deleteAll();
+			List<Author> authors = repo.findAll();
+			System.out.println(authors);
+
+			Optional<Author> authorOpt = repo.findById(31L);
+			System.out.println(authorOpt);
+			if (authorOpt.isPresent()) {
+				System.out.println(authorOpt.get());
+			}
+			else {
+				System.out.println("No existe el author");
+			}
+
+			Author author = authorOpt.orElseThrow();
+			System.out.println(author);
+
+			authorOpt.ifPresentOrElse(System.out::println, ()->System.out.println("No existe el id"));
 
 		} catch (Exception e) {
 			System.out.println("Tengo un error: " + e.getMessage());
+			//repo.deleteAll();
 		}
 
+			Category category1 = Category.builder().Id(null).name("Accion").min_age(18).build();
+			Category category2 = Category.builder().Id(null).name("Drama").min_age(16).build();
+			Category category3 = Category.builder().Id(null).name("Comedia").min_age(14).build();
+			Category category4 = Category.builder().Id(null).name("Terror").min_age(12).build();
+
+//			categoryRepo.save(category1);
+//			categoryRepo.save(category2);
+//			categoryRepo.save(category3);
+//			categoryRepo.save(category4);
+
+			categoryRepo.saveAll(List.of(category1, category2, category3, category4));
+
+			Film film1 = Film.builder().Id(null)
+					.title("El mago de oz")
+					.duration(199)
+					.releaseDate(LocalDate.of(1955, 05, 21))
+					.categories(List.of(category1, category2)).build();
+
+			Film film2 = Film.builder().Id(null)
+					.title("Superman III")
+					.duration(220)
+					.releaseDate(LocalDate.of(1970, 02, 01))
+					.categories(List.of(category2)).build();
+
+			Film film3 = Film.builder().Id(null)
+					.title("El Libro de la selva")
+					.duration(184)
+					.releaseDate(LocalDate.of(1985, 01, 02))
+					.categories(List.of(category1, category4)).build();
+
+			filmRepo.saveAll(List.of(film1, film2, film3));
+
+			//repo.deleteAll();
+
+		AddressRepository addressRepository = context.getBean(AddressRepository.class);
+		Address ad1 = new Address(null, "Calle falsa", "Madrid");
+		Address ad2 = new Address(null, "Calle prueba", "Madrid");
+		Address ad3 = new Address(null, "Calle verdadera", "Madrid");
+		Address ad4 = new Address(null, "Calle mala", "Madrid");
+		addressRepository.saveAll(List.of(ad1, ad2, ad3, ad4));
+
+		UserRepository userRepository = context.getBean(UserRepository.class);
+		User user1 = new User(null, "u1@gmail.com", "admin", ad1);
+		User user2 = new User(null, "u2@gmail.com", "admin", ad2);
+		User user3 = new User(null, "u3@gmail.com", "admin", ad3);
+		userRepository.saveAll(List.of(user1, user2, user3));
 
 	}
 

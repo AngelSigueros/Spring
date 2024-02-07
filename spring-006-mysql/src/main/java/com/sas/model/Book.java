@@ -5,7 +5,6 @@ import lombok.*;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -29,4 +28,14 @@ public class Book {
     @ManyToOne
     private Author author;
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", numberOfPages='" + numberOfPages + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
