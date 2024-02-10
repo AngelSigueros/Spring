@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.sas.Spring006MysqlApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.988 s -- in com.sas.Spring006MysqlApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.950 s -- in com.sas.Spring006MysqlApplicationTests

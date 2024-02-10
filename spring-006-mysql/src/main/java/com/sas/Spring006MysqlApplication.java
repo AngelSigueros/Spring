@@ -23,12 +23,16 @@ public class Spring006MysqlApplication {
 		Author a1 = new Author();
 		a1.setName("John");
 		a1.setEmail("john@j.com");
+		a1.setAvailable(true);
+		a1.setFechaNacimiento(LocalDate.parse("2000-01-01"));
 
 		Author a2 = new Author();
 		a2.setName("Jane");
 		a2.setEmail("jane@j.com");
+		a2.setAvailable(false);
+		a2.setFechaNacimiento(LocalDate.parse("1999-11-11"));
 
-		Author a3 = Author.builder().name("Johana").email("j0hana@j.com").build();
+		Author a3 = Author.builder().name("Johana").email("j0hana@j.com").available(true).fechaNacimiento(LocalDate.of(2001,8, 10)).build();
 
 		try {
 			repo.save(a1);
