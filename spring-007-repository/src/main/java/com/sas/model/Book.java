@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Setter
 @Getter
+@ToString
 public class Book {
 
     @jakarta.persistence.Id

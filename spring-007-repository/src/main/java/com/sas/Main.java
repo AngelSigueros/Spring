@@ -38,6 +38,12 @@ public class Main {
 		Book book10 = Book.builder().title("Libro 10").numPages(1000).price(923.55).available(false).status(Status.DISCONTINUED).releaseDate(LocalDate.of(2000, 12, 10)).build();
 
 		repoBook.saveAll(List.of(book1, book2, book3, book4, book5, book6, book7, book8, book9, book10));
+
+		System.out.println(repoBook.findByReleaseDateBefore(LocalDate.of(2000, 12, 31)));
+		System.out.println(repoBook.findByNumPagesLessThan(258));
+		System.out.println(repoBook.findByNumPagesBetween(400, 700));
+
+
 	}
 
 }
