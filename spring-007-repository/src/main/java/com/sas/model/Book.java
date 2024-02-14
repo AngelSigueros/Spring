@@ -1,8 +1,6 @@
 package com.sas.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -24,6 +22,8 @@ public class Book {
     private Integer numPages;
     private Double price;
     private Boolean available;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
     private LocalDate releaseDate;
 

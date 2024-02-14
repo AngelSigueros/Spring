@@ -72,4 +72,34 @@ public class BookController {
 
         return repoBook.findByNumPagesLessThanAndPriceGreaterThanAndAvailableTrue(550, 200.0);
     }
+
+    @GetMapping("/first")
+    public Book findFirst () {
+
+        return repoBook.findFirstByTitle("Libro");
+    }
+
+    @GetMapping("/first-price")
+    public Book findFirstPrice () {
+
+        return repoBook.findFirstByPriceOrderByPriceDesc(323.55);
+    }
+
+    @GetMapping("/first-price-no")
+    public Book findFirstPriceNo () {
+
+        return repoBook.findFirstByPriceNotNullOrderByPriceDesc();
+    }
+
+    @GetMapping("/count-status")
+    public Long countStatus () {
+
+        return repoBook.countByStatus(Status.PUBLISHED);
+    }
+
+    @GetMapping("/existe-antes")
+    public Boolean existBefore () {
+
+        return repoBook.existsByReleaseDateBefore(LocalDate.of(1970, 12, 31));
+    }
 }
