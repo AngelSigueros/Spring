@@ -1,12 +1,15 @@
 package com.sas.repository;
 
+import com.sas.model.Company;
 import com.sas.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Repository
 /*
 Repositorio con métodos derivados para practicar consultas sobre la entidad Employee con ASOCIACIONES
  */
@@ -36,5 +39,17 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             select e from Employee e join fetch e.projects
             """)
     List<Employee> findAllWithProjects();
+
+    @Query("select e from Employee e where e.company = ?1")
+    Employee findByCompany(Company company);
+
+
+    @Query("select e from Employee e where e.company.name = ?1 and e.company.postalCode = ?2")
+    Employee findByCompany_NameAndCompany_PostalCode(String name, String postalCode);
+
+
+    List<Employee> findByCompany_City(String companyCity);
+
+    List<Employee> findByCompany_PostalCode(String postalCode);
 
 }
