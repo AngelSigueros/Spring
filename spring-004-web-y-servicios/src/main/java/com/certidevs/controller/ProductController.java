@@ -12,7 +12,7 @@ import java.util.List;
 
 @AllArgsConstructor //Hace la inyeccion
 @RestController
-@RequestMapping("/products/")
+@RequestMapping("/products")
 public class ProductController {
 
     //@Autowired
@@ -25,7 +25,7 @@ public class ProductController {
 
     }
 
-    @GetMapping("/products")
+    @GetMapping("/all")
     public List<Product> findAll() {
 
         List<Product> products = this.productService.findAll();
