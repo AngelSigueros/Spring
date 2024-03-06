@@ -31,20 +31,20 @@ public class Main {
 //		}
 //		repoBook.saveAll(bookList);
 
-		Book book1 = Book.builder().title("Libro 1").numPages(198).price(23.55).available(true).status(Status.PUBLISHED).releaseDate(LocalDate.of(2000, 12, 10)).build();
-		Book book2 = Book.builder().title("Libro 2").numPages(222).price(123.55).available(true).status(Status.CENSORED).releaseDate(LocalDate.of(2000, 12, 10)).build();
-		Book book3 = Book.builder().title("Libro 3").numPages(333).price(223.55).available(false).status(Status.DRAFT).releaseDate(LocalDate.of(2000, 12, 10)).build();
-		Book book4 = Book.builder().title("Libro 4").numPages(444).price(323.55).available(true).status(Status.DISCONTINUED).releaseDate(LocalDate.of(2000, 12, 10)).build();
-		Book book5 = Book.builder().title("Libro 5").numPages(555).price(423.55).available(true).status(Status.PUBLISHED).releaseDate(LocalDate.of(2000, 12, 10)).build();
-		Book book6 = Book.builder().title("Libro 6").numPages(666).price(523.55).available(true).status(Status.CENSORED).releaseDate(LocalDate.of(2000, 12, 10)).build();
-		Book book7 = Book.builder().title("Libro 7").numPages(777).price(623.55).available(false).status(Status.PUBLISHED).releaseDate(LocalDate.of(2000, 12, 10)).build();
-		Book book8 = Book.builder().title("Libro 8").numPages(888).price(723.55).available(true).status(Status.DRAFT).releaseDate(LocalDate.of(2000, 12, 10)).build();
-		Book book9 = Book.builder().title("Libro 9").numPages(999).price(823.55).available(true).status(Status.PUBLISHED).releaseDate(LocalDate.of(2000, 12, 10)).build();
-		Book book10 = Book.builder().title("Libro 10").numPages(1000).price(923.55).available(false).status(Status.DISCONTINUED).releaseDate(LocalDate.of(2000, 12, 10)).build();
+		Book book1 = Book.builder().title("Libro 1").numPages(198).price(23.55).available(true).status(Status.PUBLISHED).publishDate(LocalDate.of(2000, 12, 10)).build();
+		Book book2 = Book.builder().title("Libro 2").numPages(222).price(123.55).available(true).status(Status.CENSORED).publishDate(LocalDate.of(2000, 12, 10)).build();
+		Book book3 = Book.builder().title("Libro 3").numPages(333).price(223.55).available(false).status(Status.DRAFT).publishDate(LocalDate.of(2000, 12, 10)).build();
+		Book book4 = Book.builder().title("Libro 4").numPages(444).price(323.55).available(true).status(Status.DISCONTINUED).publishDate(LocalDate.of(2000, 12, 10)).build();
+		Book book5 = Book.builder().title("Libro 5").numPages(555).price(423.55).available(true).status(Status.PUBLISHED).publishDate(LocalDate.of(2000, 12, 10)).build();
+		Book book6 = Book.builder().title("Libro 6").numPages(666).price(523.55).available(true).status(Status.CENSORED).publishDate(LocalDate.of(2000, 12, 10)).build();
+		Book book7 = Book.builder().title("Libro 7").numPages(777).price(623.55).available(false).status(Status.PUBLISHED).publishDate(LocalDate.of(2000, 12, 10)).build();
+		Book book8 = Book.builder().title("Libro 8").numPages(888).price(723.55).available(true).status(Status.DRAFT).publishDate(LocalDate.of(2000, 12, 10)).build();
+		Book book9 = Book.builder().title("Libro 9").numPages(999).price(823.55).available(true).status(Status.PUBLISHED).publishDate(LocalDate.of(2000, 12, 10)).build();
+		Book book10 = Book.builder().title("Libro 10").numPages(1000).price(923.55).available(false).status(Status.DISCONTINUED).publishDate(LocalDate.of(2000, 12, 10)).build();
 
 		repoBook.saveAll(List.of(book1, book2, book3, book4, book5, book6, book7, book8, book9, book10));
 
-		System.out.println(repoBook.findByReleaseDateBefore(LocalDate.of(2000, 12, 31)));
+		System.out.println(repoBook.findByPublishDateBefore(LocalDate.of(2000, 12, 31)));
 		System.out.println(repoBook.findByNumPagesLessThan(258));
 		System.out.println(repoBook.findByNumPagesBetween(400, 700));
 

@@ -25,7 +25,9 @@ public class Book {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-    private LocalDate releaseDate;
+    private LocalDate publishDate;
+    private String category;
+    private String topics;
 
 
 }

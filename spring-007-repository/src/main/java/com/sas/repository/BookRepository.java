@@ -13,8 +13,8 @@ import java.util.Optional;
 
 @Repository // Opcional
 public interface BookRepository extends JpaRepository<Book, Long> {
-    @Query("select b from Book b where b.releaseDate < ?1")
-    List<Book> findByReleaseDateBefore(LocalDate releaseDate);
+    @Query("select b from Book b where b.publishDate < ?1")
+    List<Book> findByPublishDateBefore(LocalDate releaseDate);
 
     List<Book> findByNumPagesLessThan(Integer numPages);
 
@@ -27,7 +27,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByStatus(Status status);
 
-    List<Book> findByReleaseDateBetween(LocalDate releaseDateStart, LocalDate releaseDateEnd);
+    List<Book> findByPublishDateBetween(LocalDate releaseDateStart, LocalDate releaseDateEnd);
 
     List<Book> findByNumPagesLessThanAndPriceGreaterThanAndAvailableTrue(Integer numPages, Double price);
 
@@ -47,7 +47,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     long countByStatus(Status status);
 
-    boolean existsByReleaseDateBefore(LocalDate releaseDate);
+    boolean existsByPublishDateBefore(LocalDate releaseDate);
 
 
 }

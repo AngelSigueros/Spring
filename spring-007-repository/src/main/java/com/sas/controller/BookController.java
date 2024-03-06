@@ -4,13 +4,12 @@ import com.sas.model.Book;
 import com.sas.model.Status;
 import com.sas.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/book")
 public class BookController {
@@ -23,6 +22,31 @@ public class BookController {
 
         return repoBook.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Book findById (@PathVariable Long id) {
+
+        return repoBook.findById(id).get();
+    }
+
+    @PostMapping
+    public Book save (@RequestBody Book book) {
+
+        return repoBook.save(book);
+    }
+
+    @PostMapping("/login")
+    public void login (@RequestBody Book book) {
+        System.out.println("Loging!!!");
+        repoBook.save(book);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById (@PathVariable Long id) {
+
+        repoBook.deleteById(id);
+    }
+
 
     @GetMapping("/entre")
     public List<Book> findEntre () {
@@ -39,13 +63,13 @@ public class BookController {
     @GetMapping("/antes-de")
     public List<Book> findDateAntesDe () {
 
-        return repoBook.findByReleaseDateBefore(LocalDate.of(2000, 12, 31));
+        return repoBook.findByPublishDateBefore(LocalDate.of(2000, 12, 31));
     }
 
     @GetMapping("/fecha-entre")
     public List<Book> findDateEntre () {
 
-        return repoBook.findByReleaseDateBetween(LocalDate.of(1990, 1, 1), LocalDate.of(2000, 12, 31));
+        return repoBook.findByPublishDateBetween(LocalDate.of(1990, 1, 1), LocalDate.of(2000, 12, 31));
     }
 
 
@@ -100,6 +124,6 @@ public class BookController {
     @GetMapping("/existe-antes")
     public Boolean existBefore () {
 
-        return repoBook.existsByReleaseDateBefore(LocalDate.of(1970, 12, 31));
+        return repoBook.existsByPublishDateBefore(LocalDate.of(1970, 12, 31));
     }
 }
